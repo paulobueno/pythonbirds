@@ -59,11 +59,12 @@ class Ator():
 
 
 class Obstaculo(Ator):
-    pass
+    _caracter_ativo = 'O'
 
 
 class Porco(Ator):
-    pass
+    _caracter_ativo = '@'
+    _caracter_destruido = '+'
 
 
 class DuploLancamentoExcecao(Exception):
@@ -71,7 +72,7 @@ class DuploLancamentoExcecao(Exception):
 
 
 class Passaro(Ator):
-    velocidade_escalar = 10
+    velocidade_escalar = 20
 
     def __init__(self, x=0, y=0):
         """
@@ -95,7 +96,10 @@ class Passaro(Ator):
 
         :return: booleano
         """
-        return True
+        if self._x_inicial == self.x and self._y_inicial == self.y:
+            return False
+        else:
+            return True
 
     def colidir_com_chao(self):
         """
@@ -103,7 +107,8 @@ class Passaro(Ator):
         o status dos Passaro deve ser alterado para destruido, bem como o seu caracter
 
         """
-        pass
+        if self.y <= 0:
+            self.status = DESTRUIDO
 
     def calcular_posicao(self, tempo):
         """
@@ -131,12 +136,16 @@ class Passaro(Ator):
         :param tempo_de_lancamento:
         :return:
         """
-        pass
+        self.x += 1
+        self.y += 1
 
 
 class PassaroAmarelo(Passaro):
-    pass
+    velocidade_escalar = 30
+    _caracter_ativo = 'A'
+    _caracter_destruido = 'a'
 
 
 class PassaroVermelho(Passaro):
-    pass
+    _caracter_ativo = 'V'
+    _caracter_destruido = 'v'
