@@ -72,7 +72,7 @@ class DuploLancamentoExcecao(Exception):
 
 
 class Passaro(Ator):
-    velocidade_escalar = 20
+    velocidade_escalar = 10
 
     def __init__(self, x=0, y=0):
         """
@@ -147,5 +147,6 @@ class PassaroAmarelo(Passaro):
 
 
 class PassaroVermelho(Passaro):
+    velocidade_escalar = 20
     _caracter_ativo = 'V'
     _caracter_destruido = 'v'
