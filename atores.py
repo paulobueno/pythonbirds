@@ -9,7 +9,7 @@ ATIVO = 'Ativo'
 GRAVIDADE = 10  # m/s^2
 
 
-class Ator():
+class Ator:
     """
     Classe que representa um ator. Ele representa um ponto cartesiano na tela.
     """
@@ -52,9 +52,10 @@ class Ator():
         :param intervalo: Intervalo a ser considerado
         :return:
         """
-        if abs(self.x - outro_ator.x) <= intervalo and abs(self.y - outro_ator.y) <= intervalo:
-            self.status = DESTRUIDO
-            outro_ator.status = DESTRUIDO
+        if self.status == outro_ator.status == ATIVO:
+            if abs(self.x - outro_ator.x) <= intervalo and abs(self.y - outro_ator.y) <= intervalo:
+                self.status = DESTRUIDO
+                outro_ator.status = DESTRUIDO
 
 
 
