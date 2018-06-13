@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
-
 import math
 
 DESTRUIDO = 'Destruido'
@@ -97,7 +96,7 @@ class Passaro(Ator):
 
         :return: booleano
         """
-        if self._x_inicial == self.x and self._y_inicial == self.y:
+        if self._angulo_de_lancamento == None and self._tempo_de_lancamento == None:
             return False
         else:
             return True
@@ -125,7 +124,10 @@ class Passaro(Ator):
         :param tempo: tempo de jogo a ser calculada a posição
         :return: posição x, y
         """
-        return 1, 1
+        segundos_de_voo = tempo - self._tempo_de_lancamento
+        radianos = math.radians(self._angulo_de_lancamento)
+        seno = math.asin(radianos)
+        return 1, segundos_de_voo * seno
 
 
     def lancar(self, angulo, tempo_de_lancamento):
@@ -137,8 +139,9 @@ class Passaro(Ator):
         :param tempo_de_lancamento:
         :return:
         """
-        self.x += 1
-        self.y += 1
+        self._angulo_de_lancamento = angulo
+        self._tempo_de_lancamento = tempo_de_lancamento
+
 
 
 class PassaroAmarelo(Passaro):
